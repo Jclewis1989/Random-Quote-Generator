@@ -23,48 +23,36 @@ var quotes = [
     {
         quotation: "I've missed more than 9000 shots in my career. I've lost almost 300 games. 26 times, I've been trusted to take the game winning shot and missed. I've failed over and over and over again in my life. And that is why I succeed.",
         source: "Michael Jordon",
-        citation: "",
-        year: "",
         tag: "sports"
   },
 
     {
         quotation: "You can't win unless you learn how to lose.",
         source: "Kareem Abdul-Jabbar",
-        citation: "",
-        year: "",
         tag: "sports",
   },
 
     {
         quotation: "Play is the only way the highest intelligence of humankind can unfold.",
         source: "Joseph Chilton Pearce",
-        citation: "",
-        year: "",
         tag: "sports",
   },
 
     {
         quotation: "Boxing is a celebration of the lost religion of masculinity all the more trenchant for its being lost.",
         source: "Joyce Carol Oates",
-        citation: "",
-        year: "",
         tag: "sports",
   },
 
     {
         quotation: "Bulls do not win bull fights. People do.",
         source: "Norman Ralph Augustine",
-        citation: "",
-        year: "",
         tag: "sports",
   },
 
     {
         quotation: "Baseball is the only field of endeavor where a man can succeed three times out of ten and be considered a good performer.",
         source: "Ted Williams",
-        citation: "",
-        year: "",
         tag: "sports",
   },
 
@@ -74,92 +62,14 @@ var quotes = [
     {
         quotation: "Art, freedom and creativity will change society faster than politics.",
         source: "Victor Pinchuk",
-        citation: "",
-        year: "",
         tag: "politics",
   },
-  
-  /*
-    {
-        quotation: "",
-        source: "",
-        citation: "",
-        year: "",
-        tag: ""
-    },
-    
-    {
-        quotation: "",
-        source: "",
-        citation: "",
-        year: "",
-        tag: ""
-    },
-    
-    {
-        quotation: "",
-        source: "",
-        citation: "",
-        year: "",
-        tag: ""
-    },
-    
-    {
-        quotation: "",
-        source: "",
-        citation: "",
-        year: "",
-        tag: ""
-    },
-    
-    // Financial Quotes
-    //________________________________________________________
-
-    {
-        quotation: "",
-        source: "",
-        citation: "",
-        year: "",
-        tag: ""
-    },
-    
-    {
-        quotation: "",
-        source: "",
-        citation: "",
-        year: "",
-        tag: ""
-    },
-    
-    {
-        quotation: "",
-        source: "",
-        citation: "",
-        year: "",
-        tag: ""
-    },
-    
-    {
-        quotation: "",
-        source: "",
-        citation: "",
-        year: "",
-        tag: ""
-    }
-    */
 ];
 
   // selects a random quote object from the quotes array
   // returns the randomly selected quote object
 function getRandomQuote() {
   var randomQuote = Math.floor(Math.random() * quotes.length);
-  
-  // Extra credit splice and push listed below!
-  var noRepeat = [];
-  if(quotes) {
-    
-  }
-  
   return quotes[randomQuote];
 }
 
@@ -174,17 +84,23 @@ function printQuote() {
   // printQuote constructs a string containing the different properties of the quote object using the following HTML template:
   var quotation = '<p class="quote">' + randomQuote.quotation + '</p>';
   quotation += '<p class="source">' + randomQuote.source;
-  quotation += '<p class="citation">' + randomQuote.citation;
-  
+    
+  // printQuote doesn't add a for a missing citation or a if the year property is missing
+    if(randomQuote.citation) {
+  quotation += '<p class="citation">' + randomQuote.citation;        
+    } else {
+        randomQuote.citation = null;
+    }
+    
   // printQuote doesn't add a for a missing citation or a if the year property is missing
   if(randomQuote.year) {
     quotation += '<span class="citation">' + randomQuote.citation + '</span>';
   } else {
-    quotation += '';
+    randomQuote.year = null;
   }
   
   // printQuote displays the final HTML string to the page. You can use this JS snippet to accomplish that
-  document.getElementById('quote-box').innerHTML = quotation;
+  return document.getElementById('quote-box').innerHTML = quotation;
 }
 
 // Add comments to your code.
@@ -221,3 +137,9 @@ function changeColor () {
 
 // Refresh the quote after a set amount of time. For example, every 30 seconds, make a new quote appear. (You can use the setInterval() or setTimeout() method to do this -- see the links in the “Additional Resources” section).
 
+setInterval(function(){
+  printQuote();
+},30000);
+
+// Seconds in increments of 1000. I did not know that. 30 seconds as requested.
+// The problem I am now experiencing is the color changes too. Not just the quote.
