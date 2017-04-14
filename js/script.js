@@ -118,7 +118,7 @@ function printQuote() {
 // When the quote changes, randomly change the background color of the page.
 
 function changeColor() {
-    var colors = ['orange', 'green', 'red', 'yellow', 'purple', 'blue', 'pink'];
+    var colors = ['orange', 'green', 'red', 'purple', 'blue', 'pink'];
     var randomColors = Math.floor(Math.random() * colors.length); // Emphasis on randomly! Almost forgot that part
     var color = document.getElementById('body');
     for (var key in colors[randomColors]) {
